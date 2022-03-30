@@ -16,31 +16,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-/**
- * FindUsers is the primary entry point into the application.
- * 
- * Note the logic for doGet() and doPost() are almost identical. However, there is a difference:
- * doGet() handles the http GET request. This method is called when you put in the /findusers
- * URL in the browser.
- * doPost() handles the http POST request. This method is called after you click the submit button.
- * 
- * To run:
- * 1. Run the SQL script to recreate your database schema: http://goo.gl/86a11H.
- * 2. Insert test data. You can do this by running blog.tools.Inserter (right click,
- *    Run As > JavaApplication.
- *    Notice that this is similar to Runner.java in our JDBC example.
- * 3. Run the Tomcat server at localhost.
- * 4. Point your browser to http://localhost:8080/BlogApplication/findusers.
- */
-@WebServlet("/findfilms")
-public class FindFilms extends HttpServlet {
+// annual gross by film name
+@WebServlet("/findannualgross")
+public class FindAnnualGross extends HttpServlet {
 	
-	protected FilmDao filmDao;
+	protected AnnualGrossDao annualGrossDao;
 	
 	@Override
 	public void init() throws ServletException {
-		filmDao = FilmDao.getInstance();
+		annualGrossDao = AnnualGrossDao.getInstance();
 	}
 	
 	// get film by film name
@@ -51,16 +35,16 @@ public class FindFilms extends HttpServlet {
         Map<String, String> messages = new HashMap<String, String>();
         req.setAttribute("messages", messages);
 
-        List<Film> films = null;
+        AnnualGross annualGross = null;
         
         
         String filmName = req.getParameter("filmname");
         if (filmName == null || filmName.trim().isEmpty()) {
             messages.put("success", "Please enter a valid film name.");
         } else {
-        	// Retrieve Films, and store as a message.
+        	
         	try {
-        		films = filmDao.getFilmByFilmName(filmName);
+        		annualGross = annualGrossDao.getGrossByFilmName(filmName);
             } catch (SQLException e) {
     			e.printStackTrace();
     			throw new IOException(e);
@@ -70,9 +54,9 @@ public class FindFilms extends HttpServlet {
         	// in the input box when rendering FindUsers.jsp.
         	messages.put("previousFirstName", filmName);
         }
-        req.setAttribute("films", films);
+        req.setAttribute("annualGross", annualGross);
         
-        req.getRequestDispatcher("/FindFilms.jsp").forward(req, resp);
+        req.getRequestDispatcher("/FindAnnualGross.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -82,23 +66,23 @@ public class FindFilms extends HttpServlet {
         Map<String, String> messages = new HashMap<String, String>();
         req.setAttribute("messages", messages);
 
-        List<Film> films = new ArrayList<Film>();
+        AnnualGross annualGross = null;
         
         String filmName = req.getParameter("filmName");
         if (filmName == null || filmName.trim().isEmpty()) {
             messages.put("success", "Please enter a valid film name.");
         } else {
-        	// Retrieve BlogUsers, and store as a message.
+        	
         	try {
-            	films = filmDao.getFilmByFilmName(filmName);
+        		annualGross = annualGrossDao.getGrossByFilmName(filmName);
             } catch (SQLException e) {
     			e.printStackTrace();
     			throw new IOException(e);
             }
         	messages.put("success", "Displaying results for " + filmName);
         }
-        req.setAttribute("films", films);
+        req.setAttribute("annualGross", annualGross);
         
-        req.getRequestDispatcher("/FindFilms.jsp").forward(req, resp);
+        req.getRequestDispatcher("/FindAnnualGross.jsp").forward(req, resp);
     }
 }
