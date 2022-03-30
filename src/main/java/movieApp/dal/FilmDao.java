@@ -1,6 +1,7 @@
 package movieapp.dal;
 
 import movieapp.model.*;
+import movieapp.model.Genre.GenreTypeEnum;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -101,7 +102,8 @@ public class FilmDao {
 		return null;
 	}
 	
-	public Film getFilmByFilmName(String FilmName) throws SQLException{
+	public List<Film> getFilmByFilmName(String FilmName) throws SQLException{
+		List<Film> fList = new ArrayList<>();
 		String selectRes = "SELECT Tconst,FilmName,ReleaseDate,isAdult,title FROM Film WHERE FilmName=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
@@ -121,7 +123,7 @@ public class FilmDao {
 				String ti = results.getString("Title");
 				Film f = new Film(tc,fn,rd,ia,ti);
 				
-				return f;
+				fList.add(f);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -137,7 +139,7 @@ public class FilmDao {
 				results.close();
 			}
 		}
-		return null;
+		return fList;
 	}
 	
 	
@@ -220,6 +222,31 @@ public class FilmDao {
 		return fList;
 	}
 		
+	public Film updateFilmName(Film film, String FilmName) throws SQLException{
+		String updateG = "UPDATE film SET FilmName=? WHERE Tconst=?;";
+		Connection connection = null;
+		PreparedStatement updateStmt = null;
+		try {
+			connection = connectionManager.getConnection();
+			updateStmt = connection.prepareStatement(updateG);
+			updateStmt.setString(1, FilmName);
+			updateStmt.setString(2, film.getTconst());
+			updateStmt.executeUpdate();
+			
+			film.setFilmName(FilmName);
+			return film;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if(connection != null) {
+				connection.close();
+			}
+			if(updateStmt != null) {
+				updateStmt.close();
+			}
+		}
+	}
 	
 	public Film delete(Film film) throws SQLException {
 		String deleteUser = "DELETE FROM Film WHERE FilmName=?;";
