@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/main/java/movieApp/dal/FilmDao.java
 package movieApp.dal;
 
 import movieApp.model.*;
@@ -6,6 +7,9 @@ import movieApp.model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+=======
+package movieApp.dao;
+>>>>>>> origin/runhan:src/main/java/movieApp/dao/FilmDao.java
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

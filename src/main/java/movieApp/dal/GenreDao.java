@@ -1,11 +1,6 @@
 package movieApp.dal;
 
-<<<<<<< HEAD
 import movieApp.model.*;
-import movieApp.model.Genre.GenreTypeEnum;
-=======
-import movieapp.model.*;
->>>>>>> origin/Meiqing-Pan
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
