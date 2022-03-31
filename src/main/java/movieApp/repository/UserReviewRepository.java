@@ -1,11 +1,11 @@
-package com.group4.repository;
+package movieApp.repository;
 
-import com.group4.entity.UserReview;
+import movieApp.entity.UserReview;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.group4.constants.UserConstants.*;
+import static movieApp.constants.UserConstants.*;
 
 public class UserReviewRepository {
 

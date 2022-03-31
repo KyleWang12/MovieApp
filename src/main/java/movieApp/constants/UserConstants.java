@@ -1,4 +1,4 @@
-package com.group4.constants;
+package movieApp.constants;
 
 public class UserConstants {
     public static String driver = "com.mysql.jdbc.Driver";

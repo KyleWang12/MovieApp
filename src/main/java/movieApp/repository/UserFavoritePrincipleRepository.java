@@ -1,10 +1,10 @@
-package com.group4.repository;
+package movieApp.repository;
 
-import com.group4.entity.UserFavoritePrinciple;
+import movieApp.entity.UserFavoritePrinciple;
 
 import java.sql.*;
 
-import static com.group4.constants.UserConstants.*;
+import static movieApp.constants.UserConstants.*;
 
 public class UserFavoritePrincipleRepository {
 

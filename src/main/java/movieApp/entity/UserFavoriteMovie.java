@@ -1,4 +1,4 @@
-package com.group4.entity;
+package movieApp.entity;
 
 public class UserFavoriteMovie {
 
