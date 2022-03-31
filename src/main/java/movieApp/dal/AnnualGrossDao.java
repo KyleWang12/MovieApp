@@ -10,16 +10,18 @@ import movieApp.model.AnnualGross;
 public class AnnualGrossDao {
 	protected ConnectionManager connectionManager;
 	private static AnnualGrossDao instance = null;
+
 	protected AnnualGrossDao() {
 		connectionManager = new ConnectionManager();
 	}
+
 	public static AnnualGrossDao getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new AnnualGrossDao();
 		}
 		return instance;
 	}
-	
+
 	public AnnualGross create(AnnualGross gross) throws SQLException {
 		String insertGross = "INSERT INTO AnnualGross(Year,FilmName,Gross,TotalGross,Theaters,DistributorName) VALUES(?,?,?,?,?,?);";
 		Connection connection = null;
@@ -27,32 +29,31 @@ public class AnnualGrossDao {
 		try {
 			connection = connectionManager.getConnection();
 			insertStmt = connection.prepareStatement(insertGross);
-		
+
 			insertStmt.setInt(1, gross.getYear());
 			insertStmt.setString(2, gross.getFilmName());
 			insertStmt.setInt(3, gross.getGross());
 			insertStmt.setInt(4, gross.getTotalGross());
 			insertStmt.setInt(5, gross.getTheaters());
 			insertStmt.setString(6, gross.getDistributorName());
-			
 
 			insertStmt.executeUpdate();
-			
+
 			return gross;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(insertStmt != null) {
+			if (insertStmt != null) {
 				insertStmt.close();
 			}
 		}
 	}
-	
-	public AnnualGross getAnnualGrossByYear(int Year) throws SQLException {	
+
+	public AnnualGross getAnnualGrossByYear(int Year) throws SQLException {
 		String selectRes = "SELECT AnnualGrossId,Year,FilmName,Gross,TotalGross,Theaters,DistributorName FROM AnnualGross WHERE Year=?;";
 		Connection connection = null;
 		PreparedStatement selectStmt = null;
@@ -61,10 +62,10 @@ public class AnnualGrossDao {
 			connection = connectionManager.getConnection();
 			selectStmt = connection.prepareStatement(selectRes);
 			selectStmt.setInt(1, Year);
-			
+
 			results = selectStmt.executeQuery();
-		
-			if(results.next()) {
+
+			if (results.next()) {
 				int id = results.getInt("AnnualGrossId");
 				int y = results.getInt("Year");
 				String fn = results.getString("Filmname");
@@ -72,27 +73,27 @@ public class AnnualGrossDao {
 				int tg = results.getInt("TotalGross");
 				int t = results.getInt("Theaters");
 				String dn = results.getString("DistributorName");
-				
-				AnnualGross ag = new AnnualGross(id,y,fn,g,tg,t,dn);
+
+				AnnualGross ag = new AnnualGross(id, y, fn, g, tg, t, dn);
 				return ag;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(selectStmt != null) {
+			if (selectStmt != null) {
 				selectStmt.close();
 			}
-			if(results != null) {
+			if (results != null) {
 				results.close();
 			}
 		}
 		return null;
 	}
-	
+
 	public AnnualGross getAnnualGrossByFilmName(String FilmName) throws SQLException {
 		String selectRes = "SELECT AnnualGrossId,Year,FilmName,Gross,TotalGross,Theaters,DistributorName FROM AnnualGross WHERE FilmName=?;";
 		Connection connection = null;
@@ -102,10 +103,10 @@ public class AnnualGrossDao {
 			connection = connectionManager.getConnection();
 			selectStmt = connection.prepareStatement(selectRes);
 			selectStmt.setString(1, FilmName);
-			
+
 			results = selectStmt.executeQuery();
-		
-			if(results.next()) {
+
+			if (results.next()) {
 				int id = results.getInt("AnnualGrossId");
 				int y = results.getInt("Year");
 				String fn = results.getString("Filmname");
@@ -113,28 +114,28 @@ public class AnnualGrossDao {
 				int tg = results.getInt("TotalGross");
 				int t = results.getInt("Theaters");
 				String dn = results.getString("DistributorName");
-				
-				AnnualGross ag = new AnnualGross(id,y,fn,g,tg,t,dn);
+
+				AnnualGross ag = new AnnualGross(id, y, fn, g, tg, t, dn);
 				return ag;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(selectStmt != null) {
+			if (selectStmt != null) {
 				selectStmt.close();
 			}
-			if(results != null) {
+			if (results != null) {
 				results.close();
 			}
 		}
 		return null;
-		
+
 	}
-	
+
 	public AnnualGross getAnnualGrossByGross(int Gross) throws SQLException {
 		String selectRes = "SELECT AnnualGrossId,Year,FilmName,Gross,TotalGross,Theaters,DistributorName FROM AnnualGross WHERE Gross=?;";
 		Connection connection = null;
@@ -144,10 +145,10 @@ public class AnnualGrossDao {
 			connection = connectionManager.getConnection();
 			selectStmt = connection.prepareStatement(selectRes);
 			selectStmt.setInt(1, Gross);
-			
+
 			results = selectStmt.executeQuery();
-		
-			if(results.next()) {
+
+			if (results.next()) {
 				int id = results.getInt("AnnualGrossId");
 				int y = results.getInt("Year");
 				String fn = results.getString("Filmname");
@@ -155,28 +156,28 @@ public class AnnualGrossDao {
 				int tg = results.getInt("TotalGross");
 				int t = results.getInt("Theaters");
 				String dn = results.getString("DistributorName");
-				
-				AnnualGross ag = new AnnualGross(id,y,fn,g,tg,t,dn);
+
+				AnnualGross ag = new AnnualGross(id, y, fn, g, tg, t, dn);
 				return ag;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(selectStmt != null) {
+			if (selectStmt != null) {
 				selectStmt.close();
 			}
-			if(results != null) {
+			if (results != null) {
 				results.close();
 			}
 		}
 		return null;
-		
+
 	}
-	
+
 	public AnnualGross getAnnualGrossByTotalGross(int TotalGross) throws SQLException {
 		String selectRes = "SELECT AnnualGrossId,Year,FilmName,Gross,TotalGross,Theaters,DistributorName FROM AnnualGross WHERE TotalGross=?;";
 		Connection connection = null;
@@ -186,10 +187,10 @@ public class AnnualGrossDao {
 			connection = connectionManager.getConnection();
 			selectStmt = connection.prepareStatement(selectRes);
 			selectStmt.setInt(1, TotalGross);
-			
+
 			results = selectStmt.executeQuery();
-		
-			if(results.next()) {
+
+			if (results.next()) {
 				int id = results.getInt("AnnualGrossId");
 				int y = results.getInt("Year");
 				String fn = results.getString("Filmname");
@@ -197,28 +198,28 @@ public class AnnualGrossDao {
 				int tg = results.getInt("TotalGross");
 				int t = results.getInt("Theaters");
 				String dn = results.getString("DistributorName");
-				
-				AnnualGross ag = new AnnualGross(id,y,fn,g,tg,t,dn);
+
+				AnnualGross ag = new AnnualGross(id, y, fn, g, tg, t, dn);
 				return ag;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(selectStmt != null) {
+			if (selectStmt != null) {
 				selectStmt.close();
 			}
-			if(results != null) {
+			if (results != null) {
 				results.close();
 			}
 		}
 		return null;
-		
+
 	}
-	
+
 	public AnnualGross getAnnualGrossByTheaters(int Theaters) throws SQLException {
 		String selectRes = "SELECT AnnualGrossId,Year,FilmName,Gross,TotalGross,Theaters,DistributorName FROM AnnualGross WHERE Theaters=?;";
 		Connection connection = null;
@@ -228,10 +229,10 @@ public class AnnualGrossDao {
 			connection = connectionManager.getConnection();
 			selectStmt = connection.prepareStatement(selectRes);
 			selectStmt.setInt(1, Theaters);
-			
+
 			results = selectStmt.executeQuery();
-		
-			if(results.next()) {
+
+			if (results.next()) {
 				int id = results.getInt("AnnualGrossId");
 				int y = results.getInt("Year");
 				String fn = results.getString("Filmname");
@@ -239,27 +240,27 @@ public class AnnualGrossDao {
 				int tg = results.getInt("TotalGross");
 				int t = results.getInt("Theaters");
 				String dn = results.getString("DistributorName");
-				
-				AnnualGross ag = new AnnualGross(id,y,fn,g,tg,t,dn);
+
+				AnnualGross ag = new AnnualGross(id, y, fn, g, tg, t, dn);
 				return ag;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(selectStmt != null) {
+			if (selectStmt != null) {
 				selectStmt.close();
 			}
-			if(results != null) {
+			if (results != null) {
 				results.close();
 			}
 		}
 		return null;
 	}
-	
+
 	public AnnualGross getAnnualGrossByDistributorName(String DistributorName) throws SQLException {
 		String selectRes = "SELECT AnnualGrossId,Year,FilmName,Gross,TotalGross,Theaters,DistributorName FROM AnnualGross WHERE DistributorName=?;";
 		Connection connection = null;
@@ -269,10 +270,10 @@ public class AnnualGrossDao {
 			connection = connectionManager.getConnection();
 			selectStmt = connection.prepareStatement(selectRes);
 			selectStmt.setString(1, DistributorName);
-			
+
 			results = selectStmt.executeQuery();
-		
-			if(results.next()) {
+
+			if (results.next()) {
 				int id = results.getInt("AnnualGrossId");
 				int y = results.getInt("Year");
 				String fn = results.getString("Filmname");
@@ -280,27 +281,27 @@ public class AnnualGrossDao {
 				int tg = results.getInt("TotalGross");
 				int t = results.getInt("Theaters");
 				String dn = results.getString("DistributorName");
-				
-				AnnualGross ag = new AnnualGross(id,y,fn,g,tg,t,dn);
+
+				AnnualGross ag = new AnnualGross(id, y, fn, g, tg, t, dn);
 				return ag;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(selectStmt != null) {
+			if (selectStmt != null) {
 				selectStmt.close();
 			}
-			if(results != null) {
+			if (results != null) {
 				results.close();
 			}
 		}
 		return null;
 	}
-	
+
 	public AnnualGross delete(AnnualGross gross) throws SQLException {
 		String deleteGross = "DELETE FROM AnnualGross WHERE AnnualGrossId=?;";
 		Connection connection = null;
@@ -316,15 +317,12 @@ public class AnnualGrossDao {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			if(connection != null) {
+			if (connection != null) {
 				connection.close();
 			}
-			if(deleteStmt != null) {
+			if (deleteStmt != null) {
 				deleteStmt.close();
 			}
 		}
 	}
-	}
-	
-
 }
