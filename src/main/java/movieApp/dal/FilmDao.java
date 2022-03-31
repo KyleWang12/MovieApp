@@ -249,13 +249,13 @@ public class FilmDao {
 	}
 	
 	public Film delete(Film film) throws SQLException {
-		String deleteUser = "DELETE FROM Film WHERE FilmName=?;";
+		String deleteUser = "DELETE FROM Film WHERE Tconst=?;";
 		Connection connection = null;
 		PreparedStatement deleteStmt = null;
 		try {
 			connection = connectionManager.getConnection();
 			deleteStmt = connection.prepareStatement(deleteUser);
-			deleteStmt.setString(1, film.getFilmName());
+			deleteStmt.setString(1, film.getTconst());
 			deleteStmt.executeUpdate();
 
 			return null;
