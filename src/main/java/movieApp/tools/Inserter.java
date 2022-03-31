@@ -74,18 +74,44 @@ tt0000010	Short
 		
 		// 2. UPDATE.
 		fDao.updateFilmName(f1, "updatedFilmName1");
-		gDao.updateGenreType(g3, Genre.GenreTypeEnum.ROMANCE);
+		gDao.updateGenreType(g3, Genre.GenreTypeEnum.SHORT);
 		
 		// 3. READ.
 		Film getf1 = fDao.getFilmByTconst("tt0000002");
-		System.out.format("getFilmByTconst: %s",
+		System.out.format("getFilmByTconst: %s\n",
 				getf1.getFilmName());
 		System.out.println();
 		
 		List<Film> fList1 = new ArrayList<>();
 		fList1 = fDao.getFilmByFilmName("Le clown et ses chiens");
-		System.out.format("getFilmByFilmName: %s",
+		System.out.format("getFilmByFilmName: %s\n",
 				fList1.get(0).getFilmName());
+		System.out.println();
+		
+		List<Film> fList2 = new ArrayList<>();
+		fList2 = fDao.getFilmByReleaseDate(1892);
+		for(Film f:fList2)
+			System.out.format("getFilmByReleaseDate: %s\n",
+					f.getFilmName());
+		System.out.println();
+		
+		List<Film> fList3 = new ArrayList<>();
+		fList3 = fDao.getFilmByisAdult(false);
+		for(Film f:fList3)
+			System.out.format("getFilmByisAdult: %s\n",
+					f.getFilmName());
+		System.out.println();
+		
+		Genre getG1 = gDao.getGenreByTconst("tt0000001");
+		System.out.format("getGenreByTconst: %s\n",
+				getG1.getGenreType().name());
+		System.out.println();
+		
+		List<Film> gList1 = new ArrayList<>();
+		gList1 = gDao.getFilmByGenre(Genre.GenreTypeEnum.SHORT);
+		for(Film f:gList1)
+			System.out.format("getFilmByGenre: %s\n",
+					f.getFilmName());
 		System.out.println();
 
 		
