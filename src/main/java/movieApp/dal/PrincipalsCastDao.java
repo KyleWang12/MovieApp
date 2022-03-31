@@ -1,4 +1,4 @@
-package movieApp.dao;
+package movieApp.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import movie.model.PrincipalsCast;
-import movie.model.Users;
+import movieApp.model.PrincipalsCast;
+import movieApp.model.Users;
 
 
 public class PrincipalsCastDao{

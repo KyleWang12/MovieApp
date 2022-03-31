@@ -1,11 +1,11 @@
-package movieApp.dao;
+package movieApp.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import movie.model.*;
+import movieApp.model.*;
 
 public class WriterDao {
 

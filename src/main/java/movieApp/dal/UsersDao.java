@@ -1,6 +1,6 @@
 
-package movieApp.dao;
-import movie.model.*;
+package movieApp.dal;
+import movieApp.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
