@@ -1,7 +1,6 @@
 package movieapp.dal;
 
 import movieapp.model.*;
-import movieapp.model.Genre.GenreTypeEnum;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -73,7 +72,7 @@ public class GenreDao {
 			if(results.next()) {
 				int id = results.getInt("GenreId");
 				String tc = results.getString("Tconst");
-				Genre.GenreTypeEnum gte =Genre.GenreTypeEnum.valueOf(results.getString("GenreType"));
+				Genre.GenreTypeEnum gte =Genre.GenreTypeEnum.valueOf(results.getString("GenreType").toUpperCase());
 				Genre g = new Genre(id, tc,gte);
 				return g;
 			}
@@ -94,7 +93,7 @@ public class GenreDao {
 		return null;
 	}
 	
-	public List<Film> getFilmByGenre(GenreTypeEnum GenreType) throws SQLException{
+	public List<Film> getFilmByGenre(Genre.GenreTypeEnum GenreType) throws SQLException{
 		List<Film> fList = new ArrayList<>();
 		String selectG = "SELECT Film.Tconst AS Tconst,Film.FilmName AS FilmName,"
 				+ "Film.ReleaseDate AS ReleaseDate,Film.isAdult AS isAdult,Film.title AS title FROM "
@@ -137,7 +136,7 @@ public class GenreDao {
 		return fList;
 	}
 	
-	public Genre updateGenreType(Genre genre, GenreTypeEnum GenreType) throws SQLException{
+	public Genre updateGenreType(Genre genre, Genre.GenreTypeEnum GenreType) throws SQLException{
 		String updateG = "UPDATE Genre SET GenreType=? WHERE Tconst=?;";
 		Connection connection = null;
 		PreparedStatement updateStmt = null;
