@@ -1,4 +1,4 @@
-package movieapp.model;
+package movieApp.model;
 
 /**
  * Persons is a simple, plain old java objects (POJO).

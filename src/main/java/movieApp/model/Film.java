@@ -1,4 +1,4 @@
-package movieapp.model;
+package movieApp.model;
 
 /**
  * Persons is a simple, plain old java objects (POJO).
@@ -23,6 +23,10 @@ public class Film {
 		ReleaseDate = releaseDate;
 		this.isAdult = isAdult;
 		this.title = title;
+	}
+	
+	public Film(String tconst) {
+		Tconst = tconst;
 	}
 
 	public String getTconst() {

@@ -52,7 +52,7 @@ public class FilmDelete extends HttpServlet {
         	// Delete the Film.
         	Film film = new Film(tconst);
 	        try {
-	        	film = FilmDao.delete(film);
+	        	film = filmDao.delete(film);
 	        	// Update the message.
 		        if (film == null) {
 		            messages.put("title", "Successfully deleted " + tconst);

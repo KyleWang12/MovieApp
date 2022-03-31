@@ -1,7 +1,7 @@
-package movieapp.dal;
+package movieApp.dal;
 
-import movieapp.model.*;
-import movieapp.model.Genre.GenreTypeEnum;
+import movieApp.model.*;
+import movieApp.model.Genre.GenreTypeEnum;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

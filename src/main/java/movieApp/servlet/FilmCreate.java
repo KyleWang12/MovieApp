@@ -54,13 +54,13 @@ public class FilmCreate extends HttpServlet {
         	// Create the Film.
         	String tconst = req.getParameter("tconst");
         	// releaseDate in format year i.e. 2021
-        	int releaseDate = req.getParameter("releaseDate");
-        	boolean isAdult = req.getParameter("isAdult");
+        	int releaseDate = Integer.valueOf(req.getParameter("releaseDate"));
+        	boolean isAdult = Boolean.valueOf(req.getParameter("isAdult"));
         	String title = req.getParameter("title");
 	        try {
 	        	
 	        	Film film = new Film(tconst, filmName, releaseDate, isAdult, title);
-	        	film = FilmDao.create(film);
+	        	film = filmDao.create(film);
 	        	messages.put("success", "Successfully created " + filmName);
 	        } catch (SQLException e) {
 				e.printStackTrace();
