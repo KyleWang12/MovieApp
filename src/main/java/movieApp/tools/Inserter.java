@@ -1,7 +1,7 @@
-package movieapp.tools;
+package movieApp.tools;
 
-import movieapp.dal.*;
-import movieapp.model.*;
+import movieApp.dal.*;
+import movieApp.model.*;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -33,7 +33,7 @@ tt0000006	short	Chinese Opium Den	Chinese Opium Den	0	1894	\N	1	Short
 tt0000007	short	Corbett and Courtney Before the Kinetograph	Corbett and Courtney Before the Kinetograph	0	1894	\N	1	Short,Sport
 tt0000008	short	Edison Kinetoscopic Record of a Sneeze	Edison Kinetoscopic Record of a Sneeze	0	1894	\N	1	Documentary,Short
 tt0000009	short	Miss Jerry	Miss Jerry	0	1894	\N	40	Romance,Short
-tt0000010	short	Leaving the Factory	La sortie de l'usine Lumi¨¨re ¨¤ Lyon	0	1895	\N	1	Documentary,Short
+tt0000010	short	Leaving the Factory	La sortie de l'usine Lumiï¿½ï¿½re ï¿½ï¿½ Lyon	0	1895	\N	1	Documentary,Short
 		 */
 		Film f1 = new Film("tt0000001", "Carmencita", 1894, false, "Carmencita");
 		Film f2 = new Film("tt0000002", "Le clown et ses chiens", 1892, false, "Le clown et ses chiens");
